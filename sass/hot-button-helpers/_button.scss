@@ -1,0 +1,130 @@
+
+@import '../_config.scss';
+@import 'icons.scss';
+@import '_gradient.scss';
+
+
+@mixin button() {
+  position: relative;
+  font-size: $button-font-size;
+  text-align:center;
+  text-shadow: 0 1px 1px $button-highlight;
+  margin: $button-margin;
+  padding: 0 1em;
+  height: $button-font-size * 2;
+  line-height: $button-font-size * 2;
+  border-radius: $button-radius;
+  background-color: $button-base;
+  
+  & a, & {
+    text-decoration: none; 
+    color: $button-text;
+    min-width: $button-font-size * 2;
+    display: inline-block;
+    &:focus { outline: none; }
+  }
+
+  &:active {
+    @if $use-shadow {
+      box-shadow: inset 0px 2px 3px $button-highlight, 0px 1px 1px rgba(0,0,0, .4);
+    }
+    @if $use-shadow == false {
+      background-color: $button-lowlight
+    }
+  }
+  &:hover {color: $button-active;}
+
+  @if $use-gradient {
+    @include gradient($button-base); 
+  }
+
+  @if $use-shadow {
+    box-shadow: inset 0px 2px 3px $button-highlight, 0px 2px 4px rgba(0,0,0, .4);
+  } 
+  
+  @if $use-shadow == false {
+    border:1px solid lighten($button-text, 30%)
+  }
+
+  @if $use-inset {
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -$button-inset;
+      left: -$button-inset;
+      bottom: -$button-inset;
+      right: -$button-inset;
+      z-index: -1;
+      border-radius: $button-radius * 1.25;
+      border-top: 1px solid rgba(255,255,255,.25);
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      box-shadow: inset 0px .25em 1em rgba(0,0,0,.1);
+    }
+    &:active:after {border:1px solid $button-active; 
+      @if $highlight-active-inset {
+        @include radius_gradient($button-active);}
+      }
+  }
+
+  // Thinner buttons
+  &.thinline {
+    line-height: $button-font-size * 1.5;
+    height: $button-font-size * 1.5;
+  }
+  // Text + icon
+  &.icon-text {padding: 0 1em }
+  &.icon-text:before {padding-right:.5em;}
+
+  // sub-buttons
+  &.sub-buttons {
+    padding-right: $button-font-size /3;
+
+    a {
+      border-radius: $button-radius; 
+      border-top:1px solid darken($button-base, 20);
+      border-bottom:1px solid lighten($button-base, 20);
+      background: $sub-button-background;
+      color: $sub-button-text;
+      font-size:  $button-font-size * .66;
+      line-height: $button-font-size * 1.25;
+      position:relative;
+      top: -$button-font-size * .125;
+      padding: 0 $button-font-size/2;
+      min-width: $button-font-size;
+
+      &:first-child {margin-left: $button-font-size;}
+      &:hover {background: $button-active; color: $button-highlight}
+    }
+  }
+  // Has sub-navigation with trigger
+  &.sub-nav {
+    min-width:10em;
+    height:auto;
+    li {list-style:none; margin:0;}
+    ul {display:none; 
+      font-size:$button-font-size *.75;
+      line-height: $button-font-size * 1.5;
+      border-top: 1px solid darken($button-base, 10%);
+
+    }
+    &:hover {
+      ul {display:block}
+    }
+  }
+
+  // uses divider
+  & .divide-left, & .divide-right {display:inline-block;}
+  & .divide-left {
+    border-left: 1px solid darken($button-base, 10%); 
+    padding-left: $button-font-size/2;
+    margin-left: $button-font-size/4;
+    float:right;
+  }
+  & .divide-right {
+    border-right: 1px solid darken($button-base, 10%); 
+    padding-right: $button-font-size/2;
+    margin-right: $button-font-size/2;
+    float:left;
+  }
+}
