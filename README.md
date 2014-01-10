@@ -11,7 +11,7 @@ You can create text-only buttons, icon-only buttons, or buttons with both.
 
 You can also have buttons with sub-buttons, sub-navigation, "thinline buttons", and divided buttons.
 
-For some demos, view the index.html, but remember, those are just the default settings.
+For some demos, [visit the github pages](http://tbaxter.github.io/hot-buttons/) or download the project and view the index.html, but remember, those are just the default settings. You can configure them however you like.
 
 
 
